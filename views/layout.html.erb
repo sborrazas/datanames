@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DataNames - DATAUY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <meta name="description" content="Goal.me description" />
+  <meta name="keywords" content="goal,task,system" />
+  <meta http-equiv="Content-Language" content="en" />
+
+  <link href="/assets/favicon.png" rel="shortcut icon" type="image/png" />
+  <link href="<%= stylesheet_path('webapp.css') %>" rel="stylesheet" type="text/css" />
+  <link href="<%= stylesheet_path('jqplot.css') %>" rel="stylesheet" type="text/css" />
+
+  <script src="<%= javascript_path('modernizr.min.js') %>"></script>
+</head>
+<body>
+  <header class="main-header">
+    <a href="/">
+      <h1>180 Ciencia</h1>
+      <img src="<%= asset_path('images/logo.png') %>" alt="DATAUY" class="logo" />
+    </a>
+    <nav>
+      <ul>
+        <li>
+          <a href="#" class="social-icon twitter">
+            <span class="social-icon-text">Twitter</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="social-icon facebook">
+            <span class="social-icon-text">Facebook</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="introduction">
+    <h1>Descubr&iacute; la historia y las estad&iacute;sticas de tu nombre durante los &uacute;ltimos 40 a&ntilde;os.</h1>
+  </section>
+
+  <section id="main">
+    <%= yield %>
+  </section>
+
+  <footer>
+    <p>
+      Lamentablemente s&oacute;lo contamos con los datos de Montevideo.
+      &iquest;Pod&eacute;s conseguir de otros departamentos? <a href="mailto:daniel.chino.carranza@gmail.com" target="_blank">&iexcl;Av&iacute;sanos!</a>
+    </p>
+    <p>Un proyecto de: <a href="#">180CIENCIA</a> y <a href="#">DATAUY</a>.</p>
+  </footer>
+
+  <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
+  <script src="<%= javascript_path('jquery.min.js') %>"></script>
+  <script src="<%= javascript_path('jquery.jqplot.min.js') %>"></script>
+  <script src="<%= javascript_path('jqplot-plugins/jqplot.highlighter.min.js') %>"></script>
+  <script src="<%= javascript_path('jqplot-plugins/jqplot.cursor.min.js') %>"></script>
+  <script src="<%= javascript_path('jqplot-plugins/jqplot.donutRenderer.min.js') %>"></script>
+  <script src="<%= javascript_path('webapp.js') %>"></script>
+  <script src="<%= javascript_path('data_processor.js') %>"></script>
+</body>
+</html>

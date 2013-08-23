@@ -1,0 +1,374 @@
+/* Libraries */
+@import('reset.css');
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,800);
+
+/* Base  ***********************************************************/
+html {
+  font-size: 16px;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  font-size: 62.5%;
+  line-height: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+a:active {
+  color: #FFF;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Header *********************************************************/
+.main-header {
+  overflow: auto;
+  height: 80px;
+  margin: 0 10%;
+}
+
+.main-header h1 {
+  display: none;
+}
+
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 3.6em;
+  color: #FFF;
+  line-height: 1.6em;
+}
+
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+  font-size: 2.2em;
+  color: #363B48;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.logo {
+  float: left;
+  margin-top: 20px;
+}
+
+.main-header nav li {
+  float: right;
+  margin: 17px 5px 0 5px;
+}
+
+.main-header nav a {
+  background: url(/images/sprites.png) transparent no-repeat;
+  display: inline-block;
+  height: 46px;
+  width: 46px;
+}
+
+.main-header .facebook {
+  background-position: -165px 0;
+}
+
+.main-header .twitter {
+  background-position: -228px 0;
+}
+
+.social-icon-text {
+  display: none;
+}
+
+/* Footer **********************************************************/
+footer {
+  background: #3E4452;
+  text-align: center;
+  color: #A7B3BF;
+  font-size: 1.3em;
+}
+
+/* Forms ***********************************************************/
+form .error-message {
+  display: none;
+}
+
+.error input,
+.error select,
+.error textarea {
+  border: 1px solid #FF0000;
+}
+
+input[type="text"],
+select {
+  border: none;
+  border-radius: 3px;
+  background: #FFF;
+  color: #666;
+  height: 2.5em;
+  font-size: 0.8em;
+  margin: 0 5px;
+  padding: 0 10px;
+}
+
+/* Buttons **********************************************************/
+.btn {
+  padding: 0 18px;
+  text-transform: uppercase;
+  border: 0;
+  border-radius: 4px;
+  display: inline-block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  line-height: 3em;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #52BE7F;
+}
+
+/* Alerts **********************************************************/
+.alert {
+  &.alert-info {
+    border-color: #3A87AD;
+  }
+
+  &.alert-error {
+    border-color: #B94A48;
+  }
+}
+
+/* Main content *****************************************************/
+#chart-wrapper,
+#main form,
+#extra-name-data,
+#extra-year-data,
+#name-examples,
+#introduction,
+footer {
+  padding: 20px 20%;
+}
+
+/* Introduction */
+#introduction {
+  background: #363B48 url(/images/background-hero.png) no-repeat center center;
+  text-align: center;
+}
+
+/* Name form */
+#main form {
+  padding: 20px 0;
+  background: #3E4452;
+  color: #FFF;
+}
+
+#main form p {
+  text-align: center;
+  font-size: 2em;
+}
+
+#main form .btn {
+  font-size: 0.7em;
+}
+
+/* Chart */
+#chart-wrapper {
+  display: none;
+}
+
+#main-chart {
+  min-height: 400px;
+  margin: 30px 0;
+}
+
+.chart .tooltip-item:nth-child(n+1) {
+  color: #FFF;
+}
+
+.chart .tooltip-item:nth-child(n+2) {
+  color: #52BE7F;
+}
+
+.chart .jqplot-table-legend-swatch {
+ width: 10px;
+}
+
+.chart .jqplot-highlighter-tooltip {
+  border-radius: 3px;
+  border: 0;
+  padding: 2px 10px;
+  background: #3E4452;
+  font-size: 1.3em;
+  color: #CCC;
+  z-index: 10000;
+}
+
+#main-chart .jqplot-axis {
+  font-size: 1.3em;
+  color: #363B48;
+}
+
+#main.active #chart-wrapper {
+  color: #363B48;
+  display: block;
+}
+
+/* Extra data */
+#extra-name-data,
+#extra-year-data {
+  overflow: auto;
+  display: none;
+}
+
+#extra-name-data header,
+#extra-year-data header {
+  line-height: 2em;
+  margin-bottom: 55px;
+}
+
+#main.active #extra-name-data,
+#main.active #extra-year-data {
+  display: block;
+}
+
+/* Extra name data */
+#extra-name-data li {
+  float: left;
+  width: 13%;
+  text-align: center;
+  margin: 10px 0;
+  font-size: 1.2em;
+  color: #363B48;
+  margin: 0 6%;
+}
+
+#extra-name-data .number-info {
+  font-size: 3em;
+  display: block;
+  margin: 15px 0;
+}
+
+#extra-name-data li:nth-child(1) .number-info { color: #52BE7F; }
+#extra-name-data li:nth-child(2) .number-info { color: #3199D5; }
+#extra-name-data li:nth-child(3) .number-info { color: #F0C340; }
+#extra-name-data li:nth-child(4) .number-info { color: #EA4640; }
+
+/* Extra year data */
+#extra-year-data ul {
+  margin: 20px 0;
+  overflow: auto;
+}
+
+#extra-year-data .year-chart {
+  width: 45%;
+  height: 340px;
+  float: left;
+  margin: 40px 0;
+}
+
+#extra-year-data .year-chart:first {
+  margin-right: 10%;
+}
+
+#extra-year-data .year-chart .jqplot-table-legend {
+  margin: 0;
+  border: 0;
+  text-transform: capitalize;
+}
+
+#extra-year-data .year-chart table.jqplot-table-legend {
+  font-size: 1.3em;
+}
+
+/* Examples */
+#main.active #name-examples {
+  display: none;
+}
+
+#name-examples header {
+  line-height: 3em;
+  margin-bottom: 3em;
+}
+
+#name-examples {
+  text-align: center;
+}
+
+#name-examples li {
+  float: left;
+  width: 30%;
+  margin-right: 5%;
+}
+
+#name-examples li:last-child {
+  margin: 0;
+}
+
+#name-examples ul {
+  overflow: auto;
+  margin-bottom: 30px;
+}
+
+#name-examples li a {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 170px;
+  line-height: 170px;
+}
+
+#name-examples li img {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  height: 170px;
+}
+
+/* Media queries **********************************************************/
+@media screen and (max-width: 1000px) {
+  body {
+    background: red;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  body {
+    background: blue;
+  }
+  .modal {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 800px) {
+  body {
+    background: white;
+  }
+}
+@media screen and (max-width: 700px) {
+  body {
+    background: yellow;
+  }
+}
+@media screen and (max-width: 600px) {
+  body {
+    background: green;
+  }
+}
