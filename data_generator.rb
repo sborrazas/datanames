@@ -78,7 +78,7 @@ module Datanames
     #
     #
     def self.format_name(name)
-      name.strip.downcase.gsub(/ /, '_')
+      name.strip.downcase.gsub(/ /, '_').gsub(/_de_los$|_del$|_de_la$|_de$/, '')
     end
 
   end
