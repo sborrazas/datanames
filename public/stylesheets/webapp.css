@@ -336,10 +336,17 @@ footer {
 }
 
 #name-examples li img {
-  position: absolute;
-  width: 100%;
-  left: 0;
   height: 170px;
+}
+
+#name-examples .example-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 2.6em;
+  width: 100%;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 /* Media queries **********************************************************/
