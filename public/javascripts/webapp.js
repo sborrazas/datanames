@@ -164,11 +164,10 @@ jQuery(function ($) {
           },
           axes: {
             xaxis: {
-              min: 1958,
-              max: 2012,
-              numberTicks: 10,
+              ticks: [[1958, ""], 1960, 1965, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, [2012, ""]],
               tickOptions: {
-                showGridline: false
+                showGridline: false,
+                formatString: "%d"
               }
             },
             yaxis: {
