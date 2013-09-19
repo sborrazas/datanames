@@ -4,7 +4,9 @@ jQuery(function ($) {
    * TODO: Check for Function.prototype.bind
   */
 
-  var App = {
+  var MIN_YEAR = 1960
+    , MAX_YEAR = 2010
+    , App = {
       /**
        *
        */
@@ -110,10 +112,16 @@ jQuery(function ($) {
         var serie = []
           , length = nameData.length
           , i = 0
-          , series = {};
+          , series = {}
+          , yearQuantityMap = {};
 
         for (; i < length; i += 1) {
-          serie.push([nameData[i].year, nameData[i].quantity]);
+          yearQuantityMap[nameData[i].year] = nameData[i].quantity;
+          console.log(nameData[i].quantity);
+        }
+
+        for (i = MIN_YEAR; i <= MAX_YEAR; i += 1) {
+          serie.push([i, yearQuantityMap[i] || 0]);
         }
 
         series[name] = serie;
