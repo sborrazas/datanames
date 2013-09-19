@@ -153,10 +153,10 @@ jQuery(function ($) {
    *
    */
   statisticsCalculator.maxYear = function (name, nameData) {
-    var maxYear = 0
-    , maxYearNumber = 0
-    , length = nameData.length
-    , i = 0;
+    var maxYear = 1960
+      , maxYearNumber = 0
+      , length = nameData.length
+      , i = 0;
 
     for (; i < length; i += 1) {
       if (nameData[i].quantity > maxYearNumber) {
@@ -175,15 +175,21 @@ jQuery(function ($) {
    *
    */
   statisticsCalculator.minYear = function (name, nameData) {
-    var minYear = MAX_YEAR
-    , minYearNumber = 9999999
-    , length = nameData.length
-    , i = 0;
+    var minYear = MIN_YEAR
+      , minYearNumber = 9999999
+      , length = nameData.length
+      , year, quantity, i;
 
-    for (; i < length; i += 1) {
-      if (nameData[i].quantity < minYearNumber) {
-        minYear = nameData[i].year;
-        minYearNumber = nameData[i].quantity;
+    for (year = MIN_YEAR; year <= MAX_YEAR; year += 1) {
+      quantity = 0;
+      for (i = 0; i < nameData.length; i += 1) {
+        if (nameData[i].year == year) {
+          quantity = nameData[i].quantity;
+        }
+      }
+      if (quantity < minYearNumber) {
+        minYear = year;
+        minYearNumber = quantity;
       }
     }
 
