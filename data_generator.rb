@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'csv'
 require 'json'
 
@@ -78,7 +79,22 @@ module Datanames
     #
     #
     def self.format_name(name)
-      name.strip.downcase.gsub(/ /, '_').gsub(/_de_los$|_del$|_de_la$|_de$/, '')
+      replacements = [
+        [/Á/, "a"],
+        [/É/, "e"],
+        [/Í/, "i"],
+        [/Ó/, "o"],
+        [/Ú/, "u"],
+        [/Ñ/, "n"],
+        [/( de los| del| de las| de la| de)(\s.*)?/, " "],
+        [/[^\sa-zA-Z\d]+/, " "],
+        [/\s+/, "_"],
+        [/^_+/, ""],
+        [/_+$/, ""]
+      ]
+      replacements.inject(name.strip.downcase) do |str, (from, to)|
+        str.gsub(from, to)
+      end
     end
 
   end
