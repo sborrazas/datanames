@@ -86,12 +86,14 @@ jQuery(function ($) {
         var namesQuantity = []
           , genderIdentity = gender[0]
           , length = yearData[genderIdentity].length
-          , i = 0;
+          , i, name, quantity;
 
         $("#" + gender + "-year-chart").empty();
 
-        for (; i < length; i += 1) {
-          namesQuantity.push([yearData[genderIdentity][i].name, yearData[genderIdentity][i].quantity]);
+        for (i = 0; i < length; i += 1) {
+          name = this.humanizeName(yearData[genderIdentity][i].name);
+          quantity = yearData[genderIdentity][i].quantity;
+          namesQuantity.push([name, quantity]);
         }
 
         $.jqplot(gender + "-year-chart", [namesQuantity], {
@@ -138,7 +140,6 @@ jQuery(function ($) {
 
         for (; i < length; i += 1) {
           yearQuantityMap[nameData[i].year] = nameData[i].quantity;
-          console.log(nameData[i].quantity);
         }
 
         for (i = MIN_YEAR; i <= MAX_YEAR; i += 1) {
@@ -214,6 +215,22 @@ jQuery(function ($) {
             show: false
           }
         });
+      },
+      /**
+       *
+       */
+      humanizeName: function (name) {
+        var processedName = name.replace(/_(.)?/, function (fullMatch, group0) {
+          return typeof group0 === "string" ? " " + group0.toUpperCase() : "";
+        });
+
+        if (name.length > 0) {
+          processedName = processedName.replace(/^(.)/, function (fullMatch, firstLetter) {
+            return firstLetter.toUpperCase();
+          });
+        }
+
+        return processedName;
       }
     };
 
