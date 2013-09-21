@@ -51,7 +51,7 @@ jQuery(function ($) {
           processor = new DataProcessor(name, year);
           processor.fetchData().done(function (data) {
             this.displayStatistics(data.statistics);
-            this.processNameData(data.name, data.nameData);
+            this.processNameData(data.name, data.year, data.nameData);
             if (data.year) {
               $("#extra-year-data .specific-year").text(data.year);
               this.displayYearStatistics(data.yearData, "male");
@@ -132,7 +132,7 @@ jQuery(function ($) {
       /**
        *
        */
-      processNameData: function (name, nameData) {
+      processNameData: function (name, year, nameData) {
         var serie = []
           , length = nameData.length
           , i = 0
@@ -148,8 +148,9 @@ jQuery(function ($) {
         }
 
         series[name] = serie;
+        series["me"] = [[year, yearQuantityMap[year]]];
 
-        this.renderChart([name], series);
+        this.renderChart([name, "me"], series);
       },
       /**
        *
@@ -176,9 +177,26 @@ jQuery(function ($) {
             shadow: false,
             markerOptions: {
               shadow: false,
+              style: "circle",
               show: false
             }
           },
+          series: [
+            {
+              markerOptions: {
+                size: 6,
+                lineWidth: 1,
+                color: "#52BE7F"
+              }
+            },
+            {
+              markerOptions: {
+                color: "#52BE7F",
+                show: true,
+                size: 9
+              }
+            }
+          ],
           grid: {
             drawGridlines: true,
             drawBorder: false,
