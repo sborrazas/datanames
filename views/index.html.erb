@@ -1,7 +1,11 @@
 <form id="name-form" action="/" method="POST" autocomplete="off">
-  <p>
+  <div class="form-field">
     <label for="name">Me llamo</label>
-    <input type="text" id="name" name="name" />
+    <div class="form-input">
+      <input type="text" id="name" name="name" />
+    </div>
+  </div>
+  <div class="form-field">
     <label for="year">y nac&iacute; en</label>
     <select id="year" name="year">
       <option value="1960">1960</option>
@@ -56,8 +60,8 @@
       <option value="2009">2009</option>
       <option value="2010">2010</option>
     </select>
-    <input type="submit" name="submit" class="btn primary" value="Continuar" />
-  </p>
+  </div>
+  <input type="submit" name="submit" class="btn primary" value="Continuar" />
 </form>
 
 <section id="chart-wrapper">

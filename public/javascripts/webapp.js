@@ -46,6 +46,7 @@ jQuery(function ($) {
             , processor;
 
           event.preventDefault();
+          this._clearFormErrors($("#name-form"));
 
           processor = new DataProcessor(name, year);
           processor.fetchData().done(function (data) {
@@ -57,8 +58,8 @@ jQuery(function ($) {
               this.displayYearStatistics(data.yearData, "female");
             }
           }.bind(this)).fail(function (error) {
-            alert(error.type);
-          });
+            this._displayError(error);
+          }.bind(this));
         }.bind(this));
       },
       /**
@@ -231,6 +232,47 @@ jQuery(function ($) {
         }
 
         return processedName;
+      },
+      /**
+       *
+       */
+      _displayError: function (error) {
+        var $nameField = $(".form-field:has(#name)")
+          , $yearField = $(".form-field:has(#year)");
+
+        switch (error.type) {
+          case "invalid_name":
+            this._displayInputError($nameField, "El nombre es inv&aacute;lido");
+            break;
+          case "name_not_found":
+            this._displayInputError($nameField, "No se encontr&oacute; el nombre ingresado");
+            break;
+          case "year_not_found":
+            this._displayInputError($yearField, "No se encontr&oacute; el a&ntilde;o ingresado");
+            break;
+
+        }
+      },
+      /**
+       *
+       */
+      _displayInputError: function ($field, errorMessage) {
+        var errorHTML = [
+          "<div class=\"form-error\">",
+            "<span class=\"tooltip-arrow\"></span>",
+            "<p>" + errorMessage + "</p>",
+          "</div>"
+        ].join("");
+
+        $field.find(".form-input").append(errorHTML);
+        $field.addClass("error");
+      },
+      /**
+       *
+       */
+      _clearFormErrors: function ($form) {
+        $form.find(".form-field.error").removeClass("error");
+        $form.find(".form-error").remove();
       }
     };
 
