@@ -86,6 +86,12 @@ jQuery(function ($) {
    */
   DataProcessor.prototype._processName = function (name) {
     var replacements = [
+      [/á/, "a"],
+      [/é/, "e"],
+      [/í/, "i"],
+      [/ó/, "o"],
+      [/ú/, "u"],
+      [/( de los| del| de la| de)(\s.*)?/, " "],
       [/[^\sa-zA-Z\d]+/g, " "],
       [/\s+/g, "_"],
       [/^_+/, ""],
