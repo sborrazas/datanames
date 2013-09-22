@@ -46,7 +46,12 @@ jQuery(function ($) {
 
           event.preventDefault();
 
-          document.location.href = "/nombre/" + name + "/" + year;
+          if (name !== "") {
+            document.location.href = "/nombre/" + name + "/" + year;
+          }
+          else {
+            this._displayError({ type: "invalid_name" });
+          }
         }.bind(this));
       },
       /**
@@ -57,7 +62,7 @@ jQuery(function ($) {
           , year = $("#year").val()
           , processor;
 
-        this._clearFormErrors($("#name-form"));
+        this._clearFormErrors();
 
         processor = new DataProcessor(name, year);
         processor.fetchData().done(function (data) {
@@ -266,6 +271,8 @@ jQuery(function ($) {
         var $nameField = $(".form-field:has(#name)")
           , $yearField = $(".form-field:has(#year)");
 
+        this._clearFormErrors();
+
         switch (error.type) {
           case "invalid_name":
             this._displayInputError($nameField, "El nombre es inv&aacute;lido");
@@ -296,7 +303,8 @@ jQuery(function ($) {
       /**
        *
        */
-      _clearFormErrors: function ($form) {
+      _clearFormErrors: function () {
+        var $form = $("#name-form");
         $form.find(".form-field.error").removeClass("error");
         $form.find(".form-error").remove();
       },
