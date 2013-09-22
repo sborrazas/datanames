@@ -42,24 +42,34 @@ jQuery(function ($) {
 
         $form.submit(function (event) {
           var name = $("#name").val()
-            , year = $("#year").val()
-            , processor;
+            , year = $("#year").val();
 
           event.preventDefault();
-          this._clearFormErrors($("#name-form"));
 
-          processor = new DataProcessor(name, year);
-          processor.fetchData().done(function (data) {
-            this.displayStatistics(data.statistics);
-            this.processNameData(data.name, data.year, data.nameData);
-            if (data.year) {
-              $("#extra-year-data .specific-year").text(data.year);
-              this.displayYearStatistics(data.yearData, "male");
-              this.displayYearStatistics(data.yearData, "female");
-            }
-          }.bind(this)).fail(function (error) {
-            this._displayError(error);
-          }.bind(this));
+          document.location.href = "/nombre/" + name + "/" + year;
+        }.bind(this));
+      },
+      /**
+       *
+       */
+      render: function () {
+        var name = $("#name").val()
+          , year = $("#year").val()
+          , processor;
+
+        this._clearFormErrors($("#name-form"));
+
+        processor = new DataProcessor(name, year);
+        processor.fetchData().done(function (data) {
+          this.displayStatistics(data.statistics);
+          this.processNameData(data.name, data.year, data.nameData);
+          if (data.year) {
+            $("#extra-year-data .specific-year").text(data.year);
+            this.displayYearStatistics(data.yearData, "male");
+            this.displayYearStatistics(data.yearData, "female");
+          }
+        }.bind(this)).fail(function (error) {
+          this._displayError(error);
         }.bind(this));
       },
       /**
@@ -295,5 +305,9 @@ jQuery(function ($) {
     };
 
   App.initialize();
+
+  if ($("#name").val() !== "") {
+    App.render();
+  }
 
 });

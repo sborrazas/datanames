@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DataNames - DATAUY</title>
+  <title><% if name %><%= name %> <% if year %>(<%= year %>)<% end %> - <% end %>DataNames - DATAUY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -60,8 +60,8 @@
     <script src="<%= javascript_path('jqplot-plugins/jqplot.highlighter.min.js') %>"></script>
     <script src="<%= javascript_path('jqplot-plugins/jqplot.cursor.min.js') %>"></script>
     <script src="<%= javascript_path('jqplot-plugins/jqplot.donutRenderer.min.js') %>"></script>
-    <script src="<%= javascript_path('webapp.js') %>"></script>
     <script src="<%= javascript_path('data_processor.js') %>"></script>
+    <script src="<%= javascript_path('webapp.js') %>"></script>
   </div>
 </body>
 </html>
