@@ -169,11 +169,13 @@ jQuery(function ($) {
         var quantitySeries = []
           , i = 0
           , namesSize = names.length
-          , chart;
+          , chart, yaxisOptions;
 
         for (i = 0; i < namesSize; i += 1) {
           quantitySeries.push(series[names[i]]);
         }
+
+        yaxisOptions = this._getYaxisOptions(quantitySeries[0]);
 
         $("#main").addClass("active");
         $("#main-chart").empty();
@@ -229,9 +231,7 @@ jQuery(function ($) {
                 formatString: "%d"
               }
             },
-            yaxis: {
-              min: 0
-            }
+            yaxis: yaxisOptions
           },
           highlighter: {
             show: true,
@@ -301,6 +301,31 @@ jQuery(function ($) {
       _clearFormErrors: function ($form) {
         $form.find(".form-field.error").removeClass("error");
         $form.find(".form-error").remove();
+      },
+      /**
+       *
+       */
+      _getYaxisOptions: function (serie) {
+        var yaxisOptions = { min: 0 }
+          , maxValue = 0
+          , i, length;
+
+        if (serie.length === 0) {
+          yaxisOptions.ticksNumber = 10;
+        }
+        else {
+          for (i = 0, length = serie.length; i < length; i += 1) {
+            if (serie[i][1] > maxValue) {
+              maxValue = serie[i][1];
+            }
+          }
+          console.log(maxValue);
+          if (maxValue <= 6) {
+            yaxisOptions.max = 6;
+          }
+        }
+
+        return yaxisOptions;
       }
     };
 
