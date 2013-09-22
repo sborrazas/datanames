@@ -311,11 +311,11 @@ footer {
   width: 45%;
   height: 340px;
   float: left;
-  margin: 40px 0;
+  margin: 40px 10% 40px 0;
 }
 
-#extra-year-data .year-chart:first {
-  margin-right: 10%;
+#extra-year-data .year-chart:last-child {
+  margin-right: 0;
 }
 
 #extra-year-data .year-chart .jqplot-table-legend {
@@ -346,6 +346,7 @@ footer {
   float: left;
   width: 30%;
   margin-right: 5%;
+  overflow: hidden;
 }
 
 #name-examples li:last-child {
@@ -381,31 +382,79 @@ footer {
 
 /* Media queries **********************************************************/
 @media screen and (max-width: 1000px) {
-  body {
-    background: red;
+  #chart-wrapper,
+  #main form,
+  #extra-name-data,
+  #extra-year-data,
+  #name-examples,
+  #introduction,
+  footer {
+    padding: 16px 10%;
+  }
+
+  #extra-year-data .year-chart {
+    margin-top: 10px;
+  }
+
+  #extra-name-data header, #extra-year-data header {
+    margin-bottom: 0;
   }
 }
 
 @media screen and (max-width: 900px) {
-  body {
-    background: blue;
-  }
-  .modal {
-    width: 70%;
+  #chart-wrapper,
+  #main form,
+  #extra-name-data,
+  #extra-year-data,
+  #name-examples,
+  #introduction,
+  footer {
+    padding: 14px 5%;
   }
 }
 @media screen and (max-width: 800px) {
-  body {
-    background: white;
+  h1 {
+    font-size: 2.6em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  #main form .btn {
+    clear: left;
+    margin: 15px auto 0 auto;
+    display: block;
+  }
+
+  #name-examples header {
+    margin: 0 auto;
+  }
+
+  #extra-year-data .year-chart {
+    margin: 10px auto;
+    float: none;
+    width: 100%;
   }
 }
+
 @media screen and (max-width: 700px) {
-  body {
-    background: yellow;
+  #name-examples li,
+  #name-examples li:last-child {
+    width: 100%;
+    margin: 10px auto;
+    float: none;
   }
 }
+
 @media screen and (max-width: 600px) {
-  body {
-    background: green;
+  .form-field {
+    display: block;
+    margin: 10px auto;
+  }
+
+  #extra-name-data li {
+    width: 50%;
+    margin: 0 auto;
   }
 }
