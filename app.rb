@@ -23,7 +23,7 @@ class App < Sinatra::Base
     erb :'not_found.html'
   end
 
-  get %r{/(?:nombre/(\w+)(?:/(\d+))?)?$} do |name, year|
+  get %r{/(?:nombre/(\w(?:\w|%20)+)(?:/(\d+))?)?$} do |name, year|
     cache_control :public, :must_revalidate, max_age: 60 * 60 * 24
     erb(:'index.html', layout: :'layout.html', locals: {
       name: name,
