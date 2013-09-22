@@ -76,14 +76,12 @@ jQuery(function ($) {
        *
        */
       displayStatistics: function (statistics) {
-        var length = statistics.length
-          , i = 0
-          , $container = $("#extra-name-data ul")
-          , $li, title, desc;
+        var $container = $("#extra-name-data ul")
+          , i, length, $li, title, desc;
 
         $container.empty();
 
-        for (; i < length; i += 1) {
+        for (i = 0, length = statistics.length; i < length; i += 1) {
           title = statistics[i].title;
           desc = statistics[i].description;
           $li = $("<li><span class=\"number-info\">" + title + "</span>" + desc + "</li>");
@@ -96,14 +94,14 @@ jQuery(function ($) {
       displayYearStatistics: function (yearData, gender) {
         var namesQuantity = []
           , genderIdentity = gender[0]
-          , length = yearData[genderIdentity].length
-          , i, name, quantity;
+          , genderData = yearData[genderIdentity]
+          , i, length, name, quantity;
 
         $("#" + gender + "-year-chart").empty();
 
-        for (i = 0; i < length; i += 1) {
-          name = this.humanizeName(yearData[genderIdentity][i].name);
-          quantity = yearData[genderIdentity][i].quantity;
+        for (i = genderData.length - 1; i >= 0; i -= 1) {
+          name = this.humanizeName(genderData[i].name);
+          quantity = genderData[i].quantity;
           namesQuantity.push([name, quantity]);
         }
 
