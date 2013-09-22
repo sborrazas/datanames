@@ -106,12 +106,17 @@ footer {
 
 /* Forms ***********************************************************/
 .form-field,
-.form-input {
+.form-input,
+.form-label {
   display: inline-block;
 }
 
 .form-input {
   position: relative;
+}
+
+.form-label {
+  margin-bottom: 10px;
 }
 
 .form-field.error input,
@@ -154,10 +159,11 @@ select {
   border-radius: 3px;
   background: #FFF;
   color: #666;
-  height: 2.5em;
-  font-size: 0.8em;
+  height: 2em;
+  font-size: 1.1em;
   margin: 0 5px;
-  padding: 0 10px;
+  padding: 0.2em 10px;
+  vertical-align: middle;
 }
 
 /* Buttons **********************************************************/
@@ -169,6 +175,7 @@ select {
   display: inline-block;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
+  height: 3em;
   line-height: 3em;
   color: #FFF;
   cursor: pointer;
@@ -456,5 +463,9 @@ footer {
   #extra-name-data li {
     width: 50%;
     margin: 0 auto;
+  }
+
+  .main-header {
+    margin: 0 5%;
   }
 }

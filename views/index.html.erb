@@ -1,12 +1,12 @@
 <form id="name-form" action="/" method="POST" autocomplete="off">
   <div class="form-field">
-    <label for="name">Me llamo</label>
+    <label for="name" class="form-label">Me llamo</label>
     <div class="form-input">
       <input type="text" id="name" name="name" value="<%= name %>" />
     </div>
   </div>
   <div class="form-field">
-    <label for="year">y nac&iacute; en</label>
+    <label for="year" class="form-label">y nac&iacute; en</label>
     <select id="year" name="year">
       <% (1960..2010).each do |sel_year| %>
         <option value="<%= sel_year %>" <% if year == sel_year %>selected="selected"<% end %>>
