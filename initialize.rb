@@ -7,6 +7,6 @@ require 'rubygems'
 require 'bundler'
 
 ENV['BUNDLE_GEMFILE'] = root_path('Gemfile')
-Bundler.setup
+Bundler.require
 
 require root_path('app')
