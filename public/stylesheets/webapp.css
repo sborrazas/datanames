@@ -203,6 +203,7 @@ select {
 #extra-year-data,
 #name-examples,
 #introduction,
+#sharing,
 footer {
   padding: 20px 20%;
 }
@@ -407,6 +408,16 @@ footer {
   width: 100%;
   font-weight: 800;
   text-transform: uppercase;
+}
+
+/* Sharing ****************************************************************/
+#sharing {
+  text-align: center;
+  overflow: auto;
+}
+
+#sharing li {
+  display: inline-block;
 }
 
 /* Media queries **********************************************************/
