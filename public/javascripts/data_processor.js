@@ -46,7 +46,6 @@ jQuery(function ($) {
 
       (function (newName) {
         this._fetchNameData(newName).done(function (nameDataResponse) {
-          console.log('new name', newName);
           namesDone += 1;
           namesData[newName] = nameDataResponse;
           checkDone();

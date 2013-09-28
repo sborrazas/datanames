@@ -43,12 +43,17 @@ jQuery(function ($) {
         $form.submit(function (event) {
           var names = $("#name").val().split(',')
             , year = $("#year").val()
-            , mainName = names.shift();
+            , mainName = names.shift()
+            , url;
 
           event.preventDefault();
 
           if (mainName !== "") {
-            document.location.href = "/nombre/" + mainName + "/" + year + "?others=" + names.join(",");
+            url = "/nombre/" + mainName + "/" + year;
+            if (names.length > 1) {
+              url += "?others=" + names.join(",");
+            }
+            document.location.href = url;
           }
           else {
             this._displayError({ type: "invalid_name" });
@@ -323,7 +328,6 @@ jQuery(function ($) {
               maxValue = serie[i][1];
             }
           }
-          console.log(maxValue);
           if (maxValue <= 6) {
             yaxisOptions.max = 6;
           }
