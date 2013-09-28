@@ -26,9 +26,9 @@ class App < Sinatra::Base
   get %r{/(?:nombre/(\w(?:\w|%20)+)(?:/(\d+))?)?$} do |main_name, year|
     cache_control :public, :must_revalidate, max_age: 60 * 60 * 24
     names = (params[:others] || '').split(',')
-    names.unshift(main_name)
+    names.unshift(main_name) if main_name
     erb(:'index.html', layout: :'layout.html', locals: {
-      names: names,
+      names: names.map(&:strip),
       main_name: main_name,
       year: year ? year.to_i : nil
     })
