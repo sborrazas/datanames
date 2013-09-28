@@ -5,9 +5,9 @@ jQuery(function ($) {
     , MIN_YEAR = 1960
     , MAX_YEAR = 2010
     , statisticsCalculator = {}
-    , DataProcessor = function (name, year) {
-      this.name = name;
-      this.processedName = this._processName(name);
+    , DataProcessor = function (names, year) {
+      this.names = names;
+      this.processedNames = this._processNames(names);
       this.year = this._processYear(year);
     };
 
@@ -15,36 +15,46 @@ jQuery(function ($) {
    *
    */
   DataProcessor.prototype.fetchData = function (callback) {
-    var nameDone = false
+    var namesDone = 0
       , yearDone = ! this.year
       , $processing = new $.Deferred()
-      , checkDone, nameData, yearData;
-
-    if (this.processedName === "") {
-      $processing.reject({ type: "invalid_name" });
-      return $processing;
-    }
+      , namesData = {}
+      , mainName = this.processedNames[0]
+      , checkDone, yearData, i, length, name;
 
     checkDone = function () {
-      if (nameDone && yearDone) {
+      if ((namesDone === this.processedNames.length) && yearDone) {
+        statistics = this._fetchStatistics(namesData[mainName], yearData);
         $processing.resolve({
-          name: this.name,
-          processedName: this.processedName,
+          names: this.names,
+          processedNames: this.processedNames,
           year: this.year,
-          nameData: nameData,
+          namesData: namesData,
           yearData: yearData,
-          statistics: this._fetchStatistics(nameData, yearData)
+          statistics: statistics
         });
       }
     }.bind(this);
 
-    this._fetchNameData().done(function (nameDataResponse) {
-      nameDone = true;
-      nameData = nameDataResponse;
-      checkDone();
-    }).fail(function () {
-      $processing.reject({ type: "name_not_found" });
-    });
+    for (i = 0, length = this.processedNames.length; i < length; i += 1) {
+      name = this.processedNames[i];
+
+      if (this.processedNames[i] === "") {
+        $processing.reject({ type: "invalid_name", name: name });
+        return $processing;
+      }
+
+      (function (newName) {
+        this._fetchNameData(newName).done(function (nameDataResponse) {
+          console.log('new name', newName);
+          namesDone += 1;
+          namesData[newName] = nameDataResponse;
+          checkDone();
+        }).fail(function () {
+          $processing.reject({ type: "name_not_found", name: newName });
+        });
+      }.bind(this)(name));
+    }
 
     if (!yearDone) {
       this._fetchYearData().done(function (yearDataResponse) {
@@ -62,9 +72,9 @@ jQuery(function ($) {
   /**
    *
    */
-  DataProcessor.prototype._fetchNameData = function () {
+  DataProcessor.prototype._fetchNameData = function (processedName) {
     return $.ajax({
-      url: NAMES_BASE_URL + this.processedName + ".json",
+      url: NAMES_BASE_URL + processedName + ".json",
       method: "GET",
       dataType: "json"
     });
@@ -79,6 +89,20 @@ jQuery(function ($) {
       method: "GET",
       dataType: "json"
     });
+  };
+
+  /**
+   *
+   */
+  DataProcessor.prototype._processNames = function (names) {
+    var processedNames = []
+      , i, length
+
+    for (i = 0, length = names.length; i < length; i += 1) {
+      processedNames.push(this._processName(names[i]));
+    }
+
+    return processedNames;
   };
 
   /**

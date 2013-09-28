@@ -128,7 +128,7 @@ footer {
 .form-error {
   position: absolute;
   width: 100%;
-  bottom: 2.4em;
+  bottom: 3em;
   padding: 6px 0;
 }
 
@@ -236,6 +236,10 @@ footer {
   margin: 30px 0;
 }
 
+.jqplot-target {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .chart .tooltip-item:nth-child(n+1) {
   color: #FFF;
 }
@@ -266,6 +270,24 @@ footer {
 #main.active #chart-wrapper {
   color: #363B48;
   display: block;
+}
+
+#main-chart .jqplot-table-legend {
+  border: none;
+  font-size: 1.1em;
+}
+
+#main-chart .jqplot-table-legend-swatch {
+  border-top-width: 10px;
+  border-bottom-width: 10px;
+}
+
+#main-chart .jqplot-table-legend-swatch-outline {
+  border: none;
+}
+
+#main-chart .jqplot-table-legend tr:last-child {
+  display: none;
 }
 
 /* Extra data */

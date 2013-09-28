@@ -41,13 +41,14 @@ jQuery(function ($) {
         var $form = $("#name-form");
 
         $form.submit(function (event) {
-          var name = $("#name").val()
-            , year = $("#year").val();
+          var names = $("#name").val().split(',')
+            , year = $("#year").val()
+            , mainName = names.shift();
 
           event.preventDefault();
 
-          if (name !== "") {
-            document.location.href = "/nombre/" + name + "/" + year;
+          if (mainName !== "") {
+            document.location.href = "/nombre/" + mainName + "/" + year + "?others=" + names.join(",");
           }
           else {
             this._displayError({ type: "invalid_name" });
@@ -58,16 +59,16 @@ jQuery(function ($) {
        *
        */
       render: function () {
-        var name = $("#name").val()
+        var names = $("#name").val().split(",")
           , year = $("#year").val()
           , processor;
 
         this._clearFormErrors();
 
-        processor = new DataProcessor(name, year);
+        processor = new DataProcessor(names, year);
         processor.fetchData().done(function (data) {
           this.displayStatistics(data.statistics);
-          this.processNameData(data.name, data.year, data.nameData);
+          this.processNamesData(data.processedNames, data.year, data.namesData);
           if (data.year) {
             $("#extra-year-data .specific-year").text(data.year);
             this.displayYearStatistics(data.yearData, "male");
@@ -145,25 +146,33 @@ jQuery(function ($) {
       /**
        *
        */
-      processNameData: function (name, year, nameData) {
+      processNamesData: function (names, year, namesData) {
         var serie = []
-          , length = nameData.length
-          , i = 0
+          , mainName = names[0]
           , series = {}
-          , yearQuantityMap = {};
+          , yearQuantityMap = {}
+          , namesLength, serieLength, i, j, serie, name;
 
-        for (; i < length; i += 1) {
-          yearQuantityMap[nameData[i].year] = nameData[i].quantity;
+        for (i = 0, namesLength = names.length; i < namesLength; i += 1) {
+          name = names[i];
+          serie = [];
+          series[name] = serie;
+          name = names[i];
+          nameData = namesData[name];
+          // Map all data years to their quantity
+          for (j = 0, length = nameData.length; j < length; j += 1) {
+            yearQuantityMap[nameData[j].year] = nameData[j].quantity;
+          }
+          // Go through all years and create a pair (with 0 as default quantity)
+          for (j = MIN_YEAR; j <= MAX_YEAR; j += 1) {
+            serie.push([j, yearQuantityMap[j] || 0]);
+          }
         }
 
-        for (i = MIN_YEAR; i <= MAX_YEAR; i += 1) {
-          serie.push([i, yearQuantityMap[i] || 0]);
-        }
-
-        series[name] = serie;
         series["me"] = [[year, yearQuantityMap[year]]];
+        names.push("me");
 
-        this.renderChart([name, "me"], series);
+        this.renderChart(names, series);
       },
       /**
        *
@@ -179,6 +188,7 @@ jQuery(function ($) {
         }
 
         yaxisOptions = this._getYaxisOptions(quantitySeries[0]);
+        seriesOptions = this._getSeriesOptions(names, quantitySeries);
 
         $("#main").addClass("active");
         $("#main-chart").empty();
@@ -196,22 +206,7 @@ jQuery(function ($) {
               show: false
             }
           },
-          series: [
-            {
-              markerOptions: {
-                size: 6,
-                lineWidth: 1,
-                color: "#52BE7F"
-              }
-            },
-            {
-              markerOptions: {
-                color: "#52BE7F",
-                show: true,
-                size: 9
-              }
-            }
-          ],
+          series: seriesOptions,
           grid: {
             drawGridlines: true,
             drawBorder: false,
@@ -245,6 +240,9 @@ jQuery(function ($) {
           },
           cursor: {
             show: false
+          },
+          legend: {
+            show: true
           }
         });
       },
@@ -332,6 +330,33 @@ jQuery(function ($) {
         }
 
         return yaxisOptions;
+      },
+      /**
+       *
+       */
+      _getSeriesOptions: function (names, series) {
+        var seriesOptions = []
+          , i, length;
+
+        for (i = 0, length = series.length; i < (length - 1); i += 1) {
+          seriesOptions.push({
+            label: this.humanizeName(names[i]),
+            markerOptions: {
+              size: 6,
+              lineWidth: 1
+            },
+          });
+        }
+
+        seriesOptions.push({
+          markerOptions: {
+            color: "#52BE7F",
+            show: true,
+            size: 9
+          }
+        });
+
+        return seriesOptions;
       }
     };
 
