@@ -151,12 +151,13 @@ jQuery(function ($) {
    *
    */
   DataProcessor.prototype._fetchStatistics = function (nameData) {
-    var statistics = [];
+    var statistics = []
+      , name = this.names[0];
 
-    statistics.push(statisticsCalculator.totalNames(this.name, nameData));
-    statistics.push(statisticsCalculator.yearsWithName(this.name, nameData));
-    statistics.push(statisticsCalculator.minYear(this.name, nameData));
-    statistics.push(statisticsCalculator.maxYear(this.name, nameData));
+    statistics.push(statisticsCalculator.totalNames(name, nameData));
+    statistics.push(statisticsCalculator.yearsWithName(name, nameData));
+    statistics.push(statisticsCalculator.minYear(name, nameData));
+    statistics.push(statisticsCalculator.maxYear(name, nameData));
 
     return statistics;
   };
