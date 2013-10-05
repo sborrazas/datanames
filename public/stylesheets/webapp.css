@@ -74,7 +74,7 @@ h2 {
 
 .main-header nav li {
   float: right;
-  margin: 17px 5px 0 5px;
+  margin: 28px 5px 0 5px;
 }
 
 .main-header nav a {
@@ -414,10 +414,15 @@ footer {
 #sharing {
   text-align: center;
   overflow: auto;
+  display: none;
 }
 
 #sharing li {
   display: inline-block;
+}
+
+.with-name #sharing {
+  display: block;
 }
 
 /* Media queries **********************************************************/

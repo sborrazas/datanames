@@ -15,7 +15,7 @@
 
   <script src="<%= javascript_path('modernizr.min.js') %>"></script>
 </head>
-<body>
+<body class="<%= main_name ? 'with-name' : '' %>">
   <header class="main-header">
     <a href="/">
       <h1>180 Ciencia</h1>
@@ -24,14 +24,11 @@
     <nav>
       <ul>
         <li>
-          <a href="#" class="social-icon twitter">
-            <span class="social-icon-text">Twitter</span>
-          </a>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="DataUY" data-lang="es" data-related="portal180">Twittear</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </li>
         <li>
-          <a href="#" class="social-icon facebook">
-            <span class="social-icon-text">Facebook</span>
-          </a>
+          <div class="fb-like" data-href="<%= url %>" data-width="80" data-layout="button_count" data-show-faces="false" data-send="false"></div>
         </li>
       </ul>
     </nav>
