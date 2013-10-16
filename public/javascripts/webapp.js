@@ -228,7 +228,7 @@ jQuery(function ($) {
           },
           axes: {
             xaxis: {
-              ticks: [[1958, ""], 1960, 1965, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, [2012, ""]],
+              ticks: [[1958, ""], 1960, 1970, 1980, 1990, 2000, 2010, [2012, ""]],
               tickOptions: {
                 showGridline: false,
                 formatString: "%d"
