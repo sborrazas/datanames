@@ -6,7 +6,7 @@ module Datanames
   module Data
 
     DATA_FILE = root_path('data/nombre_nacim_por_anio_y_sexo.csv')
-    TOP_NAMES_PER_YEAR_SIZE = 6
+    TOP_NAMES_PER_YEAR_SIZE = 10
 
     #
     #
