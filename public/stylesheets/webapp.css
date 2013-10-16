@@ -338,7 +338,7 @@ footer {
 
 #extra-year-data .year-chart {
   width: 45%;
-  height: 340px;
+  height: 270px;
   float: left;
   margin: 40px 10% 40px 0;
 }
@@ -355,6 +355,8 @@ footer {
 
 #extra-year-data .year-chart table.jqplot-table-legend {
   font-size: 1.3em;
+  top: 5%;
+  height: 80%;
 }
 
 /* Examples */
