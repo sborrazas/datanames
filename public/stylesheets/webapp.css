@@ -77,25 +77,6 @@ h2 {
   margin: 28px 5px 0 5px;
 }
 
-.main-header nav a {
-  background: url(/images/sprites.png) transparent no-repeat;
-  display: inline-block;
-  height: 46px;
-  width: 46px;
-}
-
-.main-header .facebook {
-  background-position: -165px 0;
-}
-
-.main-header .twitter {
-  background-position: -228px 0;
-}
-
-.social-icon-text {
-  display: none;
-}
-
 /* Footer **********************************************************/
 footer {
   background: #3E4452;
