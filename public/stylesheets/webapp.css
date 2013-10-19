@@ -178,6 +178,7 @@ select {
   height: 3em;
   color: #FFF;
   cursor: pointer;
+  -webkit-appearance: none;
 }
 
 .btn.primary {
