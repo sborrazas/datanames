@@ -23,7 +23,7 @@ class App < Sinatra::Base
     erb :'not_found.html'
   end
 
-  get %r{/(?:nombre/(\w(?:\w|%20)+)(?:/(\d+))?)?$} do |main_name, year|
+  get %r{/(?:nombre/([^/]+)(?:/(\d+))?)?$} do |main_name, year|
     cache_control :public, :must_revalidate, max_age: 60 * 60 * 24
     names = (params[:others] || '').split(',')
     names.unshift(main_name) if main_name

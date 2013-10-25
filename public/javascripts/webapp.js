@@ -50,7 +50,7 @@ jQuery(function ($) {
 
           if (mainName !== "") {
             url = "/nombre/" + mainName + "/" + year;
-            if (names.length > 1) {
+            if (names.length > 0) {
               url += "?others=" + names.join(",");
             }
             document.location.href = url;
