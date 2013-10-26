@@ -370,4 +370,6 @@ jQuery(function ($) {
     App.render();
   }
 
+  $(".help-tooltip").tooltip();
+
 });
