@@ -213,6 +213,7 @@ footer {
   display: inline-block;
   vertical-align: middle;
   margin-left: -55px;
+  opacity: 0.3;
 }
 
 #name-form input[type="text"] {
