@@ -408,11 +408,12 @@ footer {
   float: left;
   width: 30%;
   margin-right: 5%;
+  margin-top: 14px;
   overflow: hidden;
 }
 
-#name-examples li:last-child {
-  margin: 0;
+#name-examples li:nth-child(3n+3) {
+  margin-right: 0;
 }
 
 #name-examples ul {
