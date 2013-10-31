@@ -155,8 +155,7 @@ jQuery(function ($) {
         var serie = []
           , mainName = names[0]
           , series = {}
-          , yearQuantityMap = {}
-          , namesLength, serieLength, i, j, serie, name;
+          , yearQuantityMap, namesLength, serieLength, i, j, serie, name;
 
         for (i = 0, namesLength = names.length; i < namesLength; i += 1) {
           name = names[i];
@@ -164,6 +163,7 @@ jQuery(function ($) {
           series[name] = serie;
           name = names[i];
           nameData = namesData[name];
+          yearQuantityMap = {};
           // Map all data years to their quantity
           for (j = 0, length = nameData.length; j < length; j += 1) {
             yearQuantityMap[nameData[j].year] = nameData[j].quantity;
@@ -317,13 +317,13 @@ jQuery(function ($) {
       _getYaxisOptions: function (series) {
         var yaxisOptions = { min: 0 }
           , maxValue = 0
-          , serieIndex, serie, seriesLength, i, length;
+          , i, j, serie, seriesLength, serieLength;
 
-        for (serieIndex = 0, seriesLength = series.length; seriesIndex < seriesLength; seriesIndex += 1) {
-          serie = series[serieIndex];
-          for (i = 0, length = serie.length; i < length; i += 1) {
-            if (serie[i][1] > maxValue) {
-              maxValue = serie[i][1];
+        for (i = 0, seriesLength = series.length; i < seriesLength; i += 1) {
+          serie = series[i];
+          for (j = 0, serieLength = serie.length; j < serieLength; j += 1) {
+            if (serie[j][1] > maxValue) {
+              maxValue = serie[j][1];
             }
           }
         }
