@@ -192,7 +192,7 @@ jQuery(function ($) {
           quantitySeries.push(series[names[i]]);
         }
 
-        yaxisOptions = this._getYaxisOptions(quantitySeries[0]);
+        yaxisOptions = this._getYaxisOptions(quantitySeries);
         seriesOptions = this._getSeriesOptions(names, quantitySeries);
 
         $("#main").addClass("active");
@@ -314,23 +314,22 @@ jQuery(function ($) {
       /**
        *
        */
-      _getYaxisOptions: function (serie) {
+      _getYaxisOptions: function (series) {
         var yaxisOptions = { min: 0 }
           , maxValue = 0
-          , i, length;
+          , serieIndex, serie, seriesLength, i, length;
 
-        if (serie.length === 0) {
-          yaxisOptions.ticksNumber = 10;
-        }
-        else {
+        for (serieIndex = 0, seriesLength = series.length; seriesIndex < seriesLength; seriesIndex += 1) {
+          serie = series[serieIndex];
           for (i = 0, length = serie.length; i < length; i += 1) {
             if (serie[i][1] > maxValue) {
               maxValue = serie[i][1];
             }
           }
-          if (maxValue <= 6) {
-            yaxisOptions.max = 6;
-          }
+        }
+
+        if (maxValue <= 6) {
+          yaxisOptions.max = 6;
         }
 
         return yaxisOptions;
