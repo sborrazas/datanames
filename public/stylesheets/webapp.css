@@ -210,15 +210,11 @@ footer {
   background: transparent url(/images/help-icon.png) no-repeat center center;
   width: 24px;
   height: 24px;
-  display: inline-block;
   vertical-align: middle;
-  margin-left: -55px;
   opacity: 0.3;
-}
-
-#name-form input[type="text"] {
-  padding-right: 45px;
-  margin-right: 15px;
+  position: absolute;
+  top: 13px;
+  right: 20px;
 }
 
 .tooltip {
