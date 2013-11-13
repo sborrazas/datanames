@@ -14,6 +14,16 @@
   <link href="<%= stylesheet_path('jqplot.css') %>" rel="stylesheet" type="text/css" />
 
   <script src="<%= javascript_path('modernizr.min.js') %>"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-34702401-2', '180.com.uy');
+    ga('send', 'pageview');
+
+  </script>
 </head>
 <body class="<%= main_name ? 'with-name' : '' %>">
   <header class="main-header">
