@@ -202,7 +202,7 @@ jQuery(function ($) {
           title: {
             show: false
           },
-          seriesColors: ["#363B48", "#3199D5", "#EA4640", "#F0C340", "#9D58B0"],
+          seriesColors: ["#363B48", "#3199D5", "#EA4640", "#F0C340", "#9D58B0", "#52BE7F", "#960CE8", "#E8660C", "#B21212", "#00B233"],
           seriesDefaults: {
             shadow: false,
             markerOptions: {
