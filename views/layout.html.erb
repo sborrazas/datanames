@@ -22,8 +22,14 @@
 
     ga('create', 'UA-34702401-2', '180.com.uy');
     ga('send', 'pageview');
-
   </script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-41649441-2', '180.com.uy');  ga('send', 'pageview');
+  </script>
+
+  <!-- Begin Digital Analytix Tag --><script type="text/javascript">// <![CDATA[function udm_(a){var b="comScore=",c=document,d=c.cookie,e="",f="indexOf",g="substring",h="length",i=2048,j,k="&ns_",l="&",m,n,o,p,q=window,r=q.encodeURIComponent||escape;if(d[f](b)+1)for(o=0,n=d.split(";"),p=n[h];o<p;o++)m=n[o][f](b),m+1&&(e=l+unescape(n[o][g](m+b[h])));a+=k+"_t="+ +(new Date)+k+"c="+(c.characterSet||c.defaultCharset||"")+"&c8="+r(c.title)+e+"&c7="+r(c.URL)+"&c9="+r(c.referrer),a[h]>i&&a[f](l)>0&&(j=a[g](0,i-8).lastIndexOf(l),a=(a[g](0,j)+k+"cut="+r(a[g](j+1)))[g](0,i)),c.images?(m=new Image,q.ns_p||(ns_p=m),m.src=a):c.write("<","p","><",'img src="',a,'" height="1" width="1" alt="*"',"><","/p",">")}udm_('http'+(document.location.href.charAt(4)=='s'?'s://sb':'://b')+'.scorecardresearch.com/b?c1=2&c2=16973189&ns_site=180&name=portal.data');// ]]></script><noscript><p><img src="http://b.scorecardresearch.com/p?c1=2&c2=16973189&ns_site=180&name=portal.data" height="1" width="1" alt="*"></p></noscript><!-- End Digital Analytix Tag -->
 </head>
 <body class="<%= main_name ? 'with-name' : '' %>">
   <header class="main-header">
@@ -78,6 +84,7 @@
     <script src="<%= javascript_path('jqplot-plugins/jqplot.donutRenderer.min.js') %>"></script>
     <script src="<%= javascript_path('data_processor.js') %>"></script>
     <script src="<%= javascript_path('webapp.js') %>"></script>
+    <script type="text/javascript" language="JavaScript1.3" src="http://b.scorecardresearch.com/c2/16973189/ct.js"></script>
   </div>
 </body>
 </html>
