@@ -44,13 +44,18 @@ jQuery(function ($) {
           var names = $("#name").val().split(',')
             , year = $("#year").val()
             , mainName = names.shift()
-            , url;
+            , namesLength = names.length
+            , url, i;
 
           event.preventDefault();
 
           if (mainName !== "") {
             url = "/nombre/" + mainName + "/" + year;
-            if (names.length > 0) {
+            if (namesLength > 0) {
+              for (i = 0; i < namesLength; i += 1) {
+                names[i] = names[i].replace(/^\s+|\s+$/g, '');
+              }
+
               url += "?others=" + names.join(",");
             }
             document.location.href = url;
