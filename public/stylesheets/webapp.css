@@ -77,6 +77,10 @@ h2 {
   margin: 28px 5px 0 5px;
 }
 
+.main-header .fb-like {
+  z-index: 9999999;
+}
+
 /* Footer **********************************************************/
 footer {
   background: #3E4452;
